@@ -2,12 +2,25 @@ package basic_classes;
 
 public class Cell 
 {
+	public final int SIZE = 10;//wasn't sure how big to make it, so this is just a temporary 
+	//number
 	private int x;
 	private int y;
-	private final int SIZE = 10;//wasn't sure how big to make it, so this is just a temporary 
-	//number
 	private boolean hasAShip;
 	private boolean hasBeenChosen;
+	
+	public Cell()
+	{
+		this(0, 0, false, false);
+	}
+	
+	public Cell(int x, int y, boolean hasAShip, boolean hasBeenChosen)
+	{
+		this.setX(x);
+		this.setY(y);
+		this.setHasAShip(hasAShip);
+		this.setHasBeenChosen(hasBeenChosen);
+	}
 	
 	public int getX()
 	{
@@ -70,17 +83,5 @@ public class Cell
 		this.hasBeenChosen = hasBeenChosen;
 	}
 	
-	public Cell()
-	{
-		this(0, 0, false, false);
-	}
-	
-	public Cell(int x, int y, boolean hasAShip, boolean hasBeenChosen)
-	{
-		this.setX(x);
-		this.setY(y);
-		this.setHasAShip(hasAShip);
-		this.setHasBeenChosen(hasBeenChosen);
-	}
 }
 
