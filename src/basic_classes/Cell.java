@@ -6,20 +6,15 @@ public class Cell
 	//number
 	private int x;
 	private int y;
-	private boolean hasAShip;
-	private boolean hasBeenChosen;
+	private boolean hasShip;
+	private boolean isSelected;
 	
-	public Cell()
+	public Cell(int x, int y, boolean hasShip)
 	{
-		this(0, 0, false, false);
-	}
-	
-	public Cell(int x, int y, boolean hasAShip, boolean hasBeenChosen)
-	{
-		this.setX(x);
-		this.setY(y);
-		this.setHasAShip(hasAShip);
-		this.setHasBeenChosen(hasBeenChosen);
+		this.x = x;
+		this.y = y;
+		this.hasShip = hasShip;
+		this.isSelected = false;
 	}
 	
 	public int getX()
@@ -32,55 +27,24 @@ public class Cell
 		return this.y;
 	}
 	
-	public boolean hasAShip()
+	public boolean hasShip()
 	{
-		return this.hasAShip;
+		return this.hasShip;
 	}
 	
-	public boolean hasBeenChosen()
+	public boolean isSelected()
 	{
-		return this.hasBeenChosen;
+		return this.isSelected;
 	}
 	
-	//not sure if we need setters, but I'll add them just in case
-	//I'll keep them public for now but we can make them private if needed be
-	
-	public void setX(int x)
+	public void setHasShip(boolean hasShip)
 	{
-		//I assume 10 x 10 is the board size
-		//I suggest we make an enum list of constants like this
-		if(x > 0 && x < 10)
-		{
-			this.x = x;
-		}
-		else
-		{
-			throw new IllegalArgumentException("Invalid value for x of cell entered.");
-		}
+		this.hasShip = hasShip;
 	}
 	
-	public void setY(int y)
+	public void setIsSelected(boolean isSelected)
 	{
-		//I assume 10 x 10 is the board size
-		//I suggest we make an enum list of constants like this
-		if(y > 0 && y < 10)
-		{
-			this.y = y;
-		}
-		else
-		{
-			throw new IllegalArgumentException("Invalid value for y of cell entered.");
-		}
-	}
-	
-	public void setHasAShip(boolean hasAShip)
-	{
-		this.hasAShip = hasAShip;
-	}
-	
-	public void setHasBeenChosen(boolean hasBeenChosen)
-	{
-		this.hasBeenChosen = hasBeenChosen;
+		this.isSelected = isSelected;
 	}
 	
 }
