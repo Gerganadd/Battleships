@@ -4,11 +4,20 @@ public class Ship
 {
 	private int length;
 	private boolean isSunk;
+	private boolean isHorizontal;
 	
-	public Ship(int length, boolean isSunk)
+	public Ship(int length)
 	{
 		setLength(length);
-		isSunk = false;
+		this.isSunk = false;
+		this.isHorizontal = true;
+	}
+	
+	public Ship(int length, boolean isHorizontal)
+	{
+		setLength(length);
+		this.isSunk = false;
+		this.isHorizontal = isHorizontal;
 	}
 	
 	public int getLength()
@@ -21,6 +30,11 @@ public class Ship
 		return this.isSunk;
 	}
 	
+	public boolean isHorizontal()
+	{
+		return this.isHorizontal;
+	}
+	
 	public void setLength(int length)
 	{
 		if(length >= 1 && length <= 5)
@@ -31,6 +45,11 @@ public class Ship
 		{
 			throw new IllegalArgumentException("Invalid value for length.");
 		}
+	}
+	
+	public void setSunk(boolean isSunk)
+	{
+		this.isSunk = isSunk;
 	}
 	
 }
