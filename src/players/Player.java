@@ -69,7 +69,7 @@ public class Player
 	
 	private Board makePlayerBoard()
 	{
-		File file = new File(".\\resources\\PlayerShipsPosition.txt");
+		File file = new File(".\\resources\\PlayerShipsPosition.txt"); 
 		Path filePath = file.toPath();
 		Board board = new Board();		
 		try 
