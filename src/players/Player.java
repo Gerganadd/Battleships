@@ -14,7 +14,6 @@ import basic_classes.Ship;
 
 public class Player 
 {
-	//all the commented code should work when other classes are made
 	private String name;
 	private Board playerBoard;
 	private int points;
@@ -23,7 +22,7 @@ public class Player
 	{
 		this.name = name;
 		this.points = 0; //starts at 0
-		//this.playerBoard = this.makePlayerBoard();
+		this.playerBoard = this.makePlayerBoard();
 		
 	}
 	
@@ -47,7 +46,7 @@ public class Player
 		this.points = points; //private since only the attack function will use it
 	}
 	
-	/*public void attack(int x, int y, Board enemyBoard)
+	public void attack(int x, int y, Board enemyBoard)
 	{
 		Cell temp = enemyBoard.getPlayerBoard()[x][y]; //class hasn't been made yet
 		//but I checked the documentation and this should be the field I need
@@ -57,16 +56,14 @@ public class Player
 		{
 			return;
 		}
-		else if(temp.hasShip() == true) //successful attack - points + 1, remove ship from enemy
-			//board and mark cell as selected
+		else if(temp.hasShip() == true) //successful attack - points + 1, mark cell as selected
 		{
 			this.setPoints(this.getPoints() + 1);
-			enemyBoard.playerBoard[x][y].setHasShip(false);
-			enemyBoard.playerBoard[x][y].setIsSelected(true);
+			enemyBoard.getPlayerBoard()[x][y].setIsSelected(true);
 		}
 		else //unsuccessful attack - no ship in selected cell. Mark cell as selected
 		{
-			enemyBoard.playerBoard[x][y].setIsSelected(true);
+			enemyBoard.getPlayerBoard()[x][y].setIsSelected(true);
 		}
 	}
 	
@@ -85,7 +82,8 @@ public class Player
 				int length = Integer.parseInt(args[0]);
 				int x = Integer.parseInt(args[1]);
 				int y = Integer.parseInt(args[2]);
-				Ship temp = new Ship(length);
+				boolean isHorizontal = Integer.parseInt(args[3]) == 1 ? true : false;
+				Ship temp = new Ship(length, isHorizontal);
 				this.playerBoard.addShip(x, y, temp);
 			}
 		} 
@@ -97,5 +95,5 @@ public class Player
 		
 		return board;
 	}
-	*/
+	
 }
