@@ -84,7 +84,7 @@ public class Player
 				int y = Integer.parseInt(args[2]);
 				boolean isHorizontal = Integer.parseInt(args[3]) == 1 ? true : false;
 				Ship temp = new Ship(length, isHorizontal);
-				this.playerBoard.addShip(x, y, temp);
+				board.addShip(x, y, temp);
 			}
 		} 
 		catch (IOException e) 
