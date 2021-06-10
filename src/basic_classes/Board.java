@@ -29,16 +29,25 @@ public class Board
 	
 	public void addShip(int x, int y, Ship ship) 
 	{
-		if(x <= 10 && x >= 0 && y <= 10 && y >= 0 )
+		int lenght  = ship.getLength();
+		
+		for(int i = 0; i < lenght; i++)
 		{
-			playerBoard[x][y].isSelected();
+			if(ship.isHorizontal())
+			{
+				
+					playerBoard[x +i][y].setHasShip(true);;
+				
+			}
+			else
+			{
+				
+					playerBoard[x][y+i].setHasShip(true);;
+				
+			}
 			
 		}
-		else 
-		{
-			throw new IllegalArgumentException("Invalid values for row and column");
-			
-		}
+		
 	}
 	
 	public void printBoard()
