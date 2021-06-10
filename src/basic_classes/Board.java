@@ -13,7 +13,13 @@ public class Board
 	
 	private void createBoard()
 	{
-		
+		for(int i = 0; i < playerBoard.length; i++)
+		{
+			for(int j = 0; j < playerBoard.length; j++)
+			{
+				playerBoard[i][j].setHasShip(false);
+			}
+		}
 	}
 	
 	public Cell[][] getPlayerBoard()
@@ -23,7 +29,16 @@ public class Board
 	
 	public void addShip(int x, int y, Ship ship) 
 	{
-		
+		if(x <= 10 && x >= 0 && y <= 10 && y >= 0 )
+		{
+			playerBoard[x][y].isSelected();
+			
+		}
+		else 
+		{
+			throw new IllegalArgumentException("Invalid values for row and column");
+			
+		}
 	}
 	
 	public void printBoard()
