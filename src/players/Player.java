@@ -12,62 +12,67 @@ import basic_classes.Board;
 import basic_classes.Cell;
 import basic_classes.Ship;
 
-public class Player 
+public class Player extends BasePlayer
 {
-	private String name;
-	private Board playerBoard;
-	private int points;
 	
 	public Player(String name)
 	{
-		this.name = name;
-		this.points = 0; //starts at 0
-		this.playerBoard = this.makePlayerBoard();
-		
-	}
-	
-	public String getName()
-	{
-		return this.name;
-	}
-	
-	public int getPoints()
-	{
-		return this.points;
-	}
-	
-	public Board getPlayerBoard()
-	{
-		return this.playerBoard;
-	}
-	
-	private void setPoints(int points)
-	{
-		this.points = points; //private since only the attack function will use it
+		super(name);
 	}
 	
 	public void attack(int x, int y, Board enemyBoard)
 	{
-		Cell temp = enemyBoard.getPlayerBoard()[x][y]; //class hasn't been made yet
-		//but I checked the documentation and this should be the field I need
-		//I'm gonna need a getter for it
-		//or for it to be public
+		Cell temp = enemyBoard.getPlayerBoard()[x][y];
 		if(temp.isSelected() == true) //unsuccessful attack - cell has been selected before
 		{
 			return;
 		}
-		else if(temp.hasShip() == true) //successful attack - points + 1, mark cell as selected
+		else if(temp.hasShip() == true) //successful attack - points + 1, mark cell(s) as selected
 		{
 			this.setPoints(this.getPoints() + 1);
-			enemyBoard.getPlayerBoard()[x][y].setIsSelected(true);
+			if(temp.getShip().getLength() > 1)
+			{
+				if(temp.getShip().isHorizontal())
+				{
+					for(int i = temp.getX(), j = 0; j < temp.getShip().getLength(); i++, j++)
+					{
+						enemyBoard.getPlayerBoard()[i][y].setIsSelected(true);
+					}
+				}
+				else
+				{
+					for(int i = temp.getY(), j = 0; j < temp.getShip().getLength(); i++, j++)
+					{
+						enemyBoard.getPlayerBoard()[x][i].setIsSelected(true);
+					}
+				}
+
+			}
+			else
+			{
+				enemyBoard.getPlayerBoard()[x][y].setIsSelected(true);
+			}
 		}
 		else //unsuccessful attack - no ship in selected cell. Mark cell as selected
 		{
 			enemyBoard.getPlayerBoard()[x][y].setIsSelected(true);
 		}
 	}
+
+
+	@Override
+	public void attack() 
+	{
+		// TODO Auto-generated method stub
+		
+	}
 	
-	private Board makePlayerBoard()
+	//requires new makePlayerBoard that uses the mouse listener on Cell View
+	//alternatively - make a new makePLayerBoard that calls the makePlayerBoard of the second
+	//screen (the one that lets the player choose their ships)
+
+	@Override
+	public Board makeBoard() 
 	{
 		File file = new File(".\\resources\\PlayerShipsPosition.txt"); 
 		Path filePath = file.toPath();
@@ -76,6 +81,7 @@ public class Player
 		{
 			List<String> lines = Files.readAllLines(filePath, StandardCharsets.UTF_8);
 			lines.remove(0);
+			lines.remove(6);
 			for(String line : lines)
 			{
 				String[] args = line.split(" ");
@@ -85,6 +91,40 @@ public class Player
 				boolean isHorizontal = Integer.parseInt(args[3]) == 1 ? true : false;
 				Ship temp = new Ship(length, isHorizontal);
 				board.addShip(x, y, temp);
+				board.getPlayerBoard()[x][y].setHasShip(true);
+				// was supposed to add the ships along the grid but isn't working
+				/* if(isHorizontal == true)
+				{
+					for(int i = x, j = 0; j < length; i++, j++)
+					{
+						board.addShip(i, y, temp);
+						board.getPlayerBoard()[i][y].setHasShip(true);
+					}
+				}
+				else
+				{
+					for(int i = y, j = 0; j < length; i++, j++)
+					{
+						board.addShip(x, i, temp);
+						board.getPlayerBoard()[x][i].setHasShip(true);
+					}
+				}
+				*/
+				/*if(isHorizontal)
+				{
+					if(Board.SIZE - x > length)
+					{
+						board.addShip(x, y, temp);
+					}
+				}
+				else
+				{
+					if(Board.SIZE - y > length)
+					{
+						board.addShip(x, y, temp);
+					}
+				}
+				*/
 			}
 		} 
 		catch (IOException e) 
