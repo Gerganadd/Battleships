@@ -25,7 +25,7 @@ public abstract class BasePlayer
 		return this.points;
 	}
 	
-	public Board getPlayerBoard()
+	public Board getBoard()
 	{
 		return this.playerBoard;
 	}

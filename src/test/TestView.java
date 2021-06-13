@@ -69,7 +69,7 @@ public class TestView // go to GameViewScreen
 	
 	private static JPanel drawBoardOf(BasePlayer person)
 	{
-		Cell[][] tableOfCells = person.getPlayerBoard().getPlayerBoard(); // change getPlayerBoard() in BasePlayer to getBoard();
+		Cell[][] tableOfCells = person.getBoard().getPlayerBoard();
 		
 		JPanel board = new JPanel();
 		board.setLayout(new BoxLayout(board, BoxLayout.Y_AXIS));
