@@ -7,6 +7,7 @@ import players.Robot;
 
 public class Game 
 {
+	public static Game gameInstance = null;
 	public final static int MAX_POINTS = 24;
 	
 	private Player player;
@@ -18,6 +19,24 @@ public class Game
 		this.bot = new Robot("bot");
 		
 		play();
+	}
+	
+	public static Game getInstance()
+	{
+		if(gameInstance == null)
+		{
+			gameInstance = new Game();
+		}
+		return gameInstance;
+	}
+	
+	public Player getPlayer() //need those two for the CellView
+	{
+		return this.player;
+	}
+	public Robot getBot()
+	{
+		return this.bot;
 	}
 	
 	public static void main(String[] args)
@@ -40,6 +59,7 @@ public class Game
 			System.out.println("player points : " + player.getPoints());
 			System.out.println("robot points : " + bot.getPoints());
 		}
+		
 	}
 	
 	private static int randomGenerateNumber()
