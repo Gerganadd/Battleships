@@ -5,7 +5,7 @@ import basic_classes.Board;
 public abstract class BasePlayer 
 {
 	private String name;
-	private Board playerBoard;
+	protected Board playerBoard;
 	private int points;
 	
 	public BasePlayer(String name)

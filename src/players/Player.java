@@ -18,6 +18,8 @@ public class Player extends BasePlayer
 	public Player(String name)
 	{
 		super(name);
+		super.playerBoard = new Board();
+		
 	}
 	
 	public void attack(int x, int y, Board enemyBoard)
@@ -68,13 +70,15 @@ public class Player extends BasePlayer
 	}
 	
 	//requires new makePlayerBoard that uses the mouse listener on Cell View
-	//alternatively - make a new makePLayerBoard that calls the makePlayerBoard of the second
+	//alternatively - make a new makePlayerBoard that calls the makePlayerBoard of the second
 	//screen (the one that lets the player choose their ships)
 
 	@Override
 	public Board makeBoard() 
 	{
-		File file = new File(".\\resources\\PlayerShipsPosition.txt"); 
+		super.playerBoard = new Board();
+		return super.playerBoard;
+		/*File file = new File(".\\resources\\PlayerShipsPosition.txt"); 
 		Path filePath = file.toPath();
 		Board board = new Board();		
 		try 
@@ -93,7 +97,7 @@ public class Player extends BasePlayer
 				board.addShip(x, y, temp);
 				board.getPlayerBoard()[x][y].setHasShip(true);
 				// was supposed to add the ships along the grid but isn't working
-				/* if(isHorizontal == true)
+				if(isHorizontal == true)
 				{
 					for(int i = x, j = 0; j < length; i++, j++)
 					{
@@ -109,8 +113,7 @@ public class Player extends BasePlayer
 						board.getPlayerBoard()[x][i].setHasShip(true);
 					}
 				}
-				*/
-				/*if(isHorizontal)
+				if(isHorizontal)
 				{
 					if(Board.SIZE - x > length)
 					{
@@ -124,7 +127,7 @@ public class Player extends BasePlayer
 						board.addShip(x, y, temp);
 					}
 				}
-				*/
+				
 			}
 		} 
 		catch (IOException e) 
@@ -134,6 +137,7 @@ public class Player extends BasePlayer
 		}
 		
 		return board;
+		*/
 	}
 	
 }
