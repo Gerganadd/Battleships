@@ -15,7 +15,7 @@ import basic_classes.Ship;
 
 public class ShipView extends JPanel implements MouseListener
 {
-	
+	public static final int MAX_SHIPS = 8;
 	private Ship ship;
 	public static SelectShipView lastSelectedShip = null;
 	
@@ -33,6 +33,7 @@ public class ShipView extends JPanel implements MouseListener
 		{
 			lastSelectedShip = new SelectShipView();
 		}
+		
 		return lastSelectedShip;
 	}
 	
@@ -63,7 +64,7 @@ public class ShipView extends JPanel implements MouseListener
 	public void setShipColour()
 	{
 		this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
-		this.setBackground(new Color(0, 150, 255)); //base colour in CellView
+		this.setBackground(new Color(0, 0, 0)); //base colour in CellView
 	}
 	
 	public Ship getShip()
@@ -74,7 +75,7 @@ public class ShipView extends JPanel implements MouseListener
 	@Override
 	public void mouseClicked(MouseEvent e) 
 	{
-		getLastSelectedShip().add(this);
+		ShipView.getLastSelectedShip().setLastSelectedShip(this);
 		// TODO Auto-generated method stub
 		
 	}
@@ -82,6 +83,7 @@ public class ShipView extends JPanel implements MouseListener
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
+		this.setBackground(Color.green);
 		
 	}
 

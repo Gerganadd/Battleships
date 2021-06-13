@@ -60,11 +60,11 @@ public class CellView extends JPanel implements MouseListener
 				and possibly a robot attack as well, so they happen one after the other
 				 * */
 				
-				if(ShipView.getLastSelectedShip().getCounter() < 10) //this checks whether enough
+				if(ShipView.getLastSelectedShip().getCounter() < ShipView.MAX_SHIPS) //this checks whether enough
 					//ships were added. If not, more ships get added
 				{
 					SelectShipView s = ShipView.getLastSelectedShip();
-					Ship ship = s.getSelectShipView().get(s.getSelectShipView().size() - 1).getShip();
+					Ship ship = s.getLastSelectedShip().getShip();
 					Game.getInstance().getPlayer().getBoard().addShip(this.cell.getX(), this.cell.getY(), ship);
 					ShipView.getLastSelectedShip().setCounter(); //automatically increases value of
 					//counter by 1
