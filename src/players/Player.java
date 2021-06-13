@@ -69,6 +69,7 @@ public class Player extends BasePlayer
 		
 	}
 	
+	
 	//requires new makePlayerBoard that uses the mouse listener on Cell View
 	//alternatively - make a new makePlayerBoard that calls the makePlayerBoard of the second
 	//screen (the one that lets the player choose their ships)
