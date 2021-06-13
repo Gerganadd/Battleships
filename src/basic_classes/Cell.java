@@ -70,5 +70,6 @@ public class Cell
 		this.ship = ship;
 	}
 	
+	
 }
 
