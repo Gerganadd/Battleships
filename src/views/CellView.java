@@ -64,10 +64,15 @@ public class CellView extends JPanel implements MouseListener
 					//ships were added. If not, more ships get added
 				{
 					SelectShipView s = ShipView.getLastSelectedShip();
-					Ship ship = s.getLastSelectedShip().getShip();
-					Game.getInstance().getPlayer().getBoard().addShip(this.cell.getX(), this.cell.getY(), ship);
-					ShipView.getLastSelectedShip().setCounter(); //automatically increases value of
-					//counter by 1
+					if (s.getLastSelectedShip() != null)
+					{
+						Ship ship = s.getLastSelectedShip().getShip();
+						Game.getInstance().getPlayer().getBoard().addShip(this.cell.getX(), this.cell.getY(), ship);
+						ShipView.getLastSelectedShip().setCounter();//automatically increases value of
+						//counter by 1
+						s.repaint();
+						
+					}
 				}
 				else //when all ships have been added and it's attack time
 				{

@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.LinkedList;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
@@ -51,10 +52,13 @@ public class SelectShipView extends JPanel
 	private void generateShips()
 	{
 		selectShipView.add(new ShipView(new Ship(5, true)));
+		
 		selectShipView.add(new ShipView(new Ship(4, true)));
+		
 		selectShipView.add(new ShipView(new Ship(3, true)));
 		selectShipView.add(new ShipView(new Ship(3, true)));
 		selectShipView.add(new ShipView(new Ship(3, true)));
+		
 		selectShipView.add(new ShipView(new Ship(2, true)));
 		selectShipView.add(new ShipView(new Ship(2, true)));
 		selectShipView.add(new ShipView(new Ship(2, true)));
@@ -65,23 +69,23 @@ public class SelectShipView extends JPanel
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		setPnlSize();
 		
-		JPanel space = new JPanel();
-		space.setSize(20, 30);
-		space.setVisible(true);
-		
-		
 		for(ShipView s : selectShipView)
 		{
-			this.add(space);
-			this.add(s);
-			this.add(space);
+			if (s.isVisible())
+			{
+				this.add(s);
+			}
+			else
+			{
+				continue;
+			}
 		}
 	}
 	
 	private void setPnlSize()
 	{
-		int WIDTH = 200;
-		int HEIGHT = 300;
+		int WIDTH = 300;
+		int HEIGHT = 400;
 		
 		this.setSize(WIDTH, HEIGHT);
 		this.setPreferredSize(new Dimension(WIDTH, HEIGHT));

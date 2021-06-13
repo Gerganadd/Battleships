@@ -76,7 +76,10 @@ public class ShipView extends JPanel implements MouseListener
 	public void mouseClicked(MouseEvent e) 
 	{
 		ShipView.getLastSelectedShip().setLastSelectedShip(this);
-		// TODO Auto-generated method stub
+		
+	
+		
+		this.setVisible(false);
 		
 	}
 
@@ -89,12 +92,14 @@ public class ShipView extends JPanel implements MouseListener
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
+		this.setBackground(Color.black);
 		
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
+		this.setBackground(Color.black);
+		
 		// TODO Auto-generated method stub
 		
 	}
