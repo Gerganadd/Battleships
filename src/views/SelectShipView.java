@@ -67,7 +67,6 @@ public class SelectShipView extends JPanel
 	public void paintComponent(Graphics graphics)
 	{
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.setBackground(Color.blue);
 		setPnlSize();
 		
 		for(ShipView s : selectShipView)
@@ -78,7 +77,7 @@ public class SelectShipView extends JPanel
 			}
 			else
 			{
-				continue;
+				this.lastSelectedShip.setBackground(Color.red);
 			}
 		}
 	}
