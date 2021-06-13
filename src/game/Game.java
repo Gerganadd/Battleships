@@ -12,11 +12,13 @@ public class Game
 	
 	private Player player;
 	private Robot bot;
+	private boolean isAllShipsAdded;
 	
 	public Game()
 	{
 		this.player = new Player("player1");
 		this.bot = new Robot("bot");
+		this.isAllShipsAdded = false;
 		
 		//play();
 	}

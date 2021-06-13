@@ -10,18 +10,20 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import basic_classes.Cell;
-
+import game.Game;
 import players.BasePlayer;
 import players.Player;
 import players.Robot;
 //import views.BoardView;
 import views.CellView;
+import views.GameView;
 import views.SelectShipView;
 
 public class TestView // go to GameViewScreen
 {
 	public static int pnlInformation_WIDTH = 10 * Cell.WIDTH;
 	public static int pnlInformation_HEIGHT = Cell.HEIGHT; // may be 30 or 40
+	
 	
 	public static void main(String[] args) 
 	{
@@ -31,19 +33,29 @@ public class TestView // go to GameViewScreen
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setLayout(new BoxLayout(f.getContentPane(), BoxLayout.X_AXIS));
 		
+		//GameView game = new GameView(new Game());
+		//f.add(game);
+		
+		
 		JPanel playerBoard = drawBasePlayerPnl(new Player("Pesho"));
+		JPanel playerBoard1 = drawBasePlayerPnl(new Player("Gosho"));
 		//JPanel robotBoard = drawBasePlayerPnl(new Robot("Gosho"));
 		
 		JPanel spacePnl = new JPanel();
 		spacePnl.setSize(new Dimension(50,50));
 		
+		JPanel shipsPnl = new JPanel();
 		JPanel shipsChoise = new SelectShipView();
+		shipsPnl.add(shipsChoise);
 		
 		f.add(shipsChoise);
-
+		//f.add(shipsPnl);
 		f.add(playerBoard);
-		//f.add(spacePnl);
+		f.add(spacePnl);
+		f.add(playerBoard1);
 		//f.add(robotBoard);
+		
+		
 		
 		f.setLocationRelativeTo(null);
 		f.pack();
@@ -109,6 +121,5 @@ public class TestView // go to GameViewScreen
 		
 		return board;
 	}
-
-
+	
 }

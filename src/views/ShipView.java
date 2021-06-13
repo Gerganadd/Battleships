@@ -15,7 +15,11 @@ import basic_classes.Ship;
 
 public class ShipView extends JPanel implements MouseListener
 {
+	public static final Color SHIP_COLOR = new Color(0, 0, 0);
+	public static final Color SELECTED_SHIP_COLOR = new Color(0, 255, 0);
+	
 	public static final int MAX_SHIPS = 8;
+	
 	private Ship ship;
 	public static SelectShipView lastSelectedShip = null;
 	
@@ -37,34 +41,53 @@ public class ShipView extends JPanel implements MouseListener
 		return lastSelectedShip;
 	}
 	
-	private void setShipSize()
-	{
-		if(this.getShip().isHorizontal())
-		{
-			this.setSize(Cell.WIDTH * this.ship.getLength(), Cell.HEIGHT);
-			this.setPreferredSize(new Dimension(Cell.WIDTH * this.ship.getLength(), Cell.HEIGHT));
-			this.setMaximumSize(new Dimension(Cell.WIDTH * this.ship.getLength(), Cell.HEIGHT));
-			this.setMinimumSize(new Dimension(Cell.WIDTH * this.ship.getLength(), Cell.HEIGHT));
-		}
-		else
-		{
-			this.setSize(Cell.WIDTH, Cell.HEIGHT * this.getShip().getLength());
-			this.setPreferredSize(new Dimension(Cell.WIDTH, Cell.HEIGHT * this.getShip().getLength()));
-			this.setMaximumSize(new Dimension(Cell.WIDTH, Cell.HEIGHT * this.getShip().getLength()));
-			this.setMinimumSize(new Dimension(Cell.WIDTH, Cell.HEIGHT * this.getShip().getLength()));
-		}
-	}
-	
 	public void paintComponent(Graphics graphics)
 	{
 		Graphics2D g = (Graphics2D) graphics;
 		super.paintComponent(g);
 	}
 	
-	public void setShipColour()
+	public void repaint()
 	{
-		this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
-		this.setBackground(new Color(0, 0, 0)); //base colour in CellView
+		if(this.getGraphics() != null)
+		{
+			this.paint(this.getGraphics());
+		}
+	}
+	
+	private void setShipSize()
+	{
+		if(this.getShip().isHorizontal())
+		{
+			Dimension d = new Dimension(Cell.WIDTH * this.ship.getLength(), Cell.HEIGHT);
+			
+			this.setSize(d);
+			this.setPreferredSize(d);
+			this.setMaximumSize(d);
+			this.setMinimumSize(d);
+		}
+		else
+		{
+			Dimension d = new Dimension(Cell.WIDTH, Cell.HEIGHT * this.getShip().getLength());
+			
+			this.setSize(d);
+			this.setPreferredSize(d);
+			this.setMaximumSize(d);
+			this.setMinimumSize(d);
+		}
+	}
+	
+	private void setShipColour()
+	{
+		if (this.isVisible())
+		{
+			this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+			this.setBackground(SHIP_COLOR); 
+		}
+		else
+		{
+			this.setBackground(this.lastSelectedShip.getBackground());
+		}
 	}
 	
 	public Ship getShip()
@@ -77,31 +100,29 @@ public class ShipView extends JPanel implements MouseListener
 	{
 		ShipView.getLastSelectedShip().setLastSelectedShip(this);
 		
-	
-		
 		this.setVisible(false);
+		this.repaint();
+		
+		//lastSelectedShip.repaint();
 		
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		this.setBackground(Color.green);
-		
+	public void mouseEntered(MouseEvent e)
+	{
+		this.setBackground(SELECTED_SHIP_COLOR);
 	}
 
 	@Override
-	public void mouseExited(MouseEvent e) {
-		this.setBackground(Color.black);
-		
+	public void mouseExited(MouseEvent e) 
+	{
+		setShipColour();
 	}
 
 	@Override
-	public void mousePressed(MouseEvent e) {
-		this.setBackground(Color.black);
-		
-		// TODO Auto-generated method stub
-		
+	public void mousePressed(MouseEvent e) 
+	{
+		setShipColour();
 	}
 
 	@Override

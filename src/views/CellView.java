@@ -38,8 +38,6 @@ public class CellView extends JPanel implements MouseListener
 	{
 		Graphics2D g = (Graphics2D) graphics;
 		   super.paintComponent(g);
-		  
-		  
 	}
 	
 	public void repaint()
@@ -59,23 +57,33 @@ public class CellView extends JPanel implements MouseListener
 				initiates a player attack on said cell
 				and possibly a robot attack as well, so they happen one after the other
 				 * */
+		this.cell.setIsSelected(true);
+		coloredCell();
 				
 				if(ShipView.getLastSelectedShip().getCounter() < ShipView.MAX_SHIPS) //this checks whether enough
 					//ships were added. If not, more ships get added
 				{
+					System.out.println("in");
 					SelectShipView s = ShipView.getLastSelectedShip();
+					//System.out.println("lenght :" + s.getLastSelectedShip().getShip().getLength());
 					if (s.getLastSelectedShip() != null)
 					{
+						System.out.println("in2");
 						Ship ship = s.getLastSelectedShip().getShip();
 						Game.getInstance().getPlayer().getBoard().addShip(this.cell.getX(), this.cell.getY(), ship);
 						ShipView.getLastSelectedShip().setCounter();//automatically increases value of
+						System.out.println(ShipView.getLastSelectedShip().getCounter());
 						//counter by 1
 						s.repaint();
+						
+						//repaint SelectShipView
+						// repaint Board
 						
 					}
 				}
 				else //when all ships have been added and it's attack time
 				{
+					/*
 					int x = cell.getX();
 					int y = cell.getY();
 					Game.getInstance().getPlayer().attack(x, y, Game.getInstance().getBot().getBoard());
@@ -83,16 +91,20 @@ public class CellView extends JPanel implements MouseListener
 					this.repaint(); //colours the cell based on the result of the attack
 					Game.getInstance().getBot().attack(Game.getInstance().getPlayer().getBoard());
 					this.repaint(); //hopefully colours the cell attacked by the robot, but I doubt it
+					*/
 				}
+				Game.getInstance().getPlayer().getBoard().printBoard();
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
+		this.setBackground(Color.GREEN);
 		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
+		coloredCell();
 		// TODO Auto-generated method stub
 		
 	}
@@ -126,11 +138,13 @@ public class CellView extends JPanel implements MouseListener
 		{
 			if(cell.hasShip())
 			{
-				this.setBackground(hasShipColor);
+				this.setBackground(Color.red);
+				//this.setBackground(hasShipColor);
 			}
 			else 
 			{
-				this.setBackground(hasntShipColor);
+				this.setBackground(Color.BLACK);
+				//this.setBackground(hasntShipColor);
 			}
 		}
 		else
