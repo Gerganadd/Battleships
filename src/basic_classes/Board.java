@@ -17,7 +17,7 @@ public class Board
 		{
 			for(int j = 0; j < playerBoard.length; j++)
 			{
-				playerBoard[i][j].setHasShip(false);
+				playerBoard[i][j] = new Cell(i, j, false);
 			}
 		}
 	}
