@@ -11,6 +11,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import basic_classes.Cell;
+import basic_classes.Ship;
+import game.Game;
 
 public class CellView extends JPanel implements MouseListener
 {
@@ -51,6 +53,26 @@ public class CellView extends JPanel implements MouseListener
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
+				/*when clicked, it does one of two things
+				 *first, if the ships added are less than ten it goes into "add ship" mode
+				 *otherwise it attacks the player ship 
+				initiates a player attack on said cell
+				and possibly a robot attack as well, so they happen one after the other
+				 * */
+				
+				//here we need to check if not enough ships are added
+				SelectShipView s = ShipView.getLastSelectedShip();
+				Ship ship = s.getSelectShipView().get(s.getSelectShipView().size() - 1).getShip();
+				Game.getInstance().getPlayer().getBoard().addShip(this.cell.getX(), this.cell.getY(), ship);
+
+				//when all ships have been added and it's attack time
+				int x = cell.getX();
+				int y = cell.getY();
+				Game.getInstance().getPlayer().attack(x, y, Game.getInstance().getBot().getBoard());
+				//basically - a cell is clicked, it initiates a player attack on said cell
+				this.repaint(); //colours the cell based on the result of the attack
+				Game.getInstance().getBot().attack(Game.getInstance().getPlayer().getBoard());
+				this.repaint(); //hopefully colours the cell attacked by the robot, but I doubt it
 		
 	}
 
