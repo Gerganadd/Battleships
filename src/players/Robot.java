@@ -6,12 +6,19 @@ import basic_classes.Board;
 import basic_classes.Cell;
 import basic_classes.Ship;
 
-public class Robot 
+public class Robot extends BasePlayer
 {
-	String name;
-	Board playerBoard;
-	int points;
+	//String name;
+	//Board playerBoard;
+	//int points;
 	
+	public Robot(String name)
+	{
+		super(name);
+		super.playerBoard = new Board();
+		
+	}
+	/*
 	public Robot(String name, Board playerBoard)
 	{
 		this.name = name;
@@ -25,7 +32,9 @@ public class Robot
 		this.playerBoard = makeBoard();
 		this.points = 0;
 	}
+	*/
 	
+	/*
 	public int getPoints() 
 	{
 		return this.points;
@@ -36,13 +45,25 @@ public class Robot
 		return this.playerBoard;
 	}
 	
+	public String getName()
+	{
+		return this.name;
+	}
+	
 	public void attack(Board enemyBoard) 
 	{
 		
 	}
-	
+	*/
 	public Board makeBoard()
 	{
-		return null;
+		super.playerBoard = new Board();
+		return super.playerBoard;
+	}
+
+	@Override
+	public void attack() {
+		// TODO Auto-generated method stub
+		
 	}
 }

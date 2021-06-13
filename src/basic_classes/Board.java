@@ -52,6 +52,16 @@ public class Board
 	
 	public void printBoard()
 	{
+		for(int i = 0; i < SIZE; i++)
+		{
+			for(int k = 0; k < SIZE; k++)
+			{
+				char symbol = this.playerBoard[i][k].hasShip() ? 'X' : 'o';
+				System.out.print(symbol + " ");
+			}
+			System.out.println();
+		}
 		
+		System.out.println();
 	}
 }

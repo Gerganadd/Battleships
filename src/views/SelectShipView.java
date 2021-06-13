@@ -67,6 +67,7 @@ public class SelectShipView extends JPanel
 	public void paintComponent(Graphics graphics)
 	{
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		this.setBackground(Color.blue);
 		setPnlSize();
 		
 		for(ShipView s : selectShipView)
@@ -84,13 +85,21 @@ public class SelectShipView extends JPanel
 	
 	private void setPnlSize()
 	{
-		int WIDTH = 300;
-		int HEIGHT = 400;
+		Dimension d = new Dimension(300, 400);
 		
-		this.setSize(WIDTH, HEIGHT);
-		this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-		this.setMaximumSize(new Dimension(WIDTH, HEIGHT));
-		this.setMinimumSize(new Dimension(WIDTH, HEIGHT));
+		this.setSize(d);
+		this.setPreferredSize(d);
+		this.setMaximumSize(d);
+		this.setMinimumSize(d);
 						
 	}
+
+	public void repaint()
+	{
+		if(this.getGraphics() != null)
+		{
+			this.paint(this.getGraphics());
+		}
+	}
+
 }
