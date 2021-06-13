@@ -4,10 +4,14 @@ public class Cell
 {
 	public final int SIZE = 10;//wasn't sure how big to make it, so this is just a temporary 
 	//number
+	public static final int WIDTH = 30;
+	public static final int HEIGHT = 30;
 	private int x;
 	private int y;
 	private boolean hasShip;
 	private boolean isSelected;
+	private Ship ship; //not sure if we need it, but I felt like each cell needs to hold its
+	//own ship
 	
 	public Cell(int x, int y, boolean hasShip)
 	{
@@ -15,6 +19,15 @@ public class Cell
 		this.y = y;
 		this.hasShip = hasShip;
 		this.isSelected = false;
+	}
+	
+	public Cell(int x, int y, boolean hasShip, Ship ship)
+	{
+		this.x = x;
+		this.y = y;
+		this.hasShip = hasShip;
+		this.isSelected = false;
+		this.ship = ship;
 	}
 	
 	public int getX()
@@ -45,6 +58,16 @@ public class Cell
 	public void setIsSelected(boolean isSelected)
 	{
 		this.isSelected = isSelected;
+	}
+	
+	public Ship getShip()
+	{
+		return this.ship;
+	}
+	
+	public void setShip(Ship ship)
+	{
+		this.ship = ship;
 	}
 	
 }
