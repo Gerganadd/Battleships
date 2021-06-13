@@ -12,8 +12,9 @@ import basic_classes.Cell;
 import players.BasePlayer;
 import players.Player;
 import players.Robot;
-
+import views.BoardView;
 import views.CellView;
+import views.SelectShipView;
 
 public class TestView // go to GameViewScreen
 {
@@ -32,13 +33,25 @@ public class TestView // go to GameViewScreen
 		JPanel spacePnl = new JPanel();
 		spacePnl.setSize(new Dimension(50,50));
 		
+		JPanel shipsChoise = new SelectShipView();
+		//shipsChoise.setBackground(Color.green);
+		
 		f.add(playerBoard);
 		f.add(spacePnl);
+		f.add(shipsChoise);
 		//f.add(robotBoard);
 		
 		f.setLocationRelativeTo(null);
 		f.pack();
 		f.repaint();
+		
+		
+		
+		//BoardView bw = new BoardView();
+		//f.add(bw);
+		//f.setLocationRelativeTo(null);
+		//f.pack();
+		//f.repaint();
 	}
 	
 	private static JPanel drawBasePlayerPnl(BasePlayer person)
@@ -46,10 +59,10 @@ public class TestView // go to GameViewScreen
 		JPanel toReturn = new JPanel();
 		toReturn.setLayout(new BoxLayout(toReturn, BoxLayout.Y_AXIS));
 		
-		JPanel personalInformation = drawPnlOfPersonalInformation(person);
+		//JPanel personalInformation = drawPnlOfPersonalInformation(person);
 		JPanel board = drawBoardOf(person);
 		
-		toReturn.add(personalInformation);
+		//toReturn.add(personalInformation);
 		toReturn.add(board);
 		
 		return toReturn;
