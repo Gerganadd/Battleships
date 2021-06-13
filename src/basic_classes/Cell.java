@@ -4,8 +4,8 @@ public class Cell
 {
 	public final int SIZE = 10;//wasn't sure how big to make it, so this is just a temporary 
 	//number
-	public static final int WIDTH = 30;
-	public static final int HEIGHT = 30;
+	public static final int WIDTH = 50;
+	public static final int HEIGHT = 50;
 	private int x;
 	private int y;
 	private boolean hasShip;
