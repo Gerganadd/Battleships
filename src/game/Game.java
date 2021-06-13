@@ -46,6 +46,7 @@ public class Game
 	
 	private void play()
 	{
+		/*
 		while(player.getPoints() != MAX_POINTS && bot.getPoints() != MAX_POINTS)
 		{
 			//player turn
@@ -59,7 +60,7 @@ public class Game
 			System.out.println("player points : " + player.getPoints());
 			System.out.println("robot points : " + bot.getPoints());
 		}
-		
+		*/
 	}
 	
 	private static int randomGenerateNumber()
