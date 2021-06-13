@@ -57,14 +57,16 @@ public class TestView // go to GameViewScreen
 	
 	private static JPanel drawPnlOfPersonalInformation(BasePlayer person)
 	{
+		JPanel toReturn = new JPanel();
+		toReturn.setLayout(new BoxLayout(toReturn, BoxLayout.Y_AXIS));
 		
-		JPanel personalInformation = new JPanel();
+		JPanel personalInformation = drawPnlOfPersonalInformation(person);
+		JPanel board = drawBoardOf(person);
 		
-		//to do: 
-		// set size() ...
-		// add Layers for name and points
+		toReturn.add(personalInformation);
+		toReturn.add(board);
 		
-		return personalInformation;
+		return toReturn;
 	}
 	
 	private static JPanel drawBoardOf(BasePlayer person)
