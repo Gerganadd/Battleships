@@ -18,7 +18,7 @@ public class Game
 		this.player = new Player("player1");
 		this.bot = new Robot("bot");
 		
-		play();
+		//play();
 	}
 	
 	public static Game getInstance()
