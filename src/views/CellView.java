@@ -143,13 +143,12 @@ public class CellView extends JPanel implements MouseListener
 		{
 			if(cell.hasShip())
 			{
-				this.setBackground(Color.red);
-				//this.setBackground(hasShipColor);
+				this.setBackground(hasShipColor);
+				//to do - add colored all other cells
 			}
 			else 
 			{
-				this.setBackground(Color.BLACK);
-				//this.setBackground(hasntShipColor);
+				this.setBackground(hasntShipColor);
 			}
 		}
 		else
