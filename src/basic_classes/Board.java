@@ -30,10 +30,10 @@ public class Board
 	public void addShip(int x, int y, Ship ship) 
 	{
 		int lenght  = ship.getLength();
-		if(!isPossibleToAddAnotherShip())
+		/*if(!isPossibleToAddAnotherShip())
 		{
 			return;
-		}
+		}*/
 		for(int i = 0; i < lenght; i++)
 		{
 			if(ship.isHorizontal())
@@ -69,7 +69,7 @@ public class Board
 		System.out.println();
 	}
 	
-	private boolean isPossibleToAddAnotherShip()
+	/*private boolean isPossibleToAddAnotherShip()
 	{
 		for(int i = 0; i < SIZE; i++)
 		{
@@ -82,5 +82,5 @@ public class Board
 			}
 		}
 		return true;
-	}
+	}*/
 }
