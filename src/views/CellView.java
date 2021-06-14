@@ -10,6 +10,7 @@ import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+import basic_classes.Board;
 import basic_classes.Cell;
 import basic_classes.Ship;
 import game.Game;
@@ -49,51 +50,55 @@ public class CellView extends JPanel implements MouseListener
 	}
 	
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+	public void mouseClicked(MouseEvent arg0) 
+	{
 				/*when clicked, it does one of two things
 				 *first, if the ships added are less than ten it goes into "add ship" mode
 				 *otherwise it attacks the player ship 
 				initiates a player attack on said cell
 				and possibly a robot attack as well, so they happen one after the other
 				 * */
+		
 		this.cell.setIsSelected(true);
-		coloredCell();
+		
+		if (ShipView.getLastSelectedShip().getCounter() == ShipView.MAX_SHIPS)
+		{
+			Game.getInstance().setAllShipsAdded(true);
+		}
+		
+		if(Game.getInstance().isAllShipsAdded()) //when all ships have been added and it's attack time
+		{
+			
+			/*
+			int x = cell.getX();
+			int y = cell.getY();
+			Game.getInstance().getPlayer().attack(x, y, Game.getInstance().getBot().getBoard());
+			//basically - a cell is clicked, it initiates a player attack on said cell
+			this.repaint(); //colours the cell based on the result of the attack
+			Game.getInstance().getBot().attack(Game.getInstance().getPlayer().getBoard());
+			this.repaint(); //hopefully colours the cell attacked by the robot, but I doubt it
+			*/
+		}
+		else 
+		{
+			SelectShipView s = ShipView.getLastSelectedShip();
+
+			if (s.getLastSelectedShip() != null)
+			{
+				Ship ship = s.getLastSelectedShip().getShip();
 				
-				if(ShipView.getLastSelectedShip().getCounter() < ShipView.MAX_SHIPS) //this checks whether enough
-					//ships were added. If not, more ships get added
-				{
-					System.out.println("in");
-					SelectShipView s = ShipView.getLastSelectedShip();
-					//System.out.println("lenght :" + s.getLastSelectedShip().getShip().getLength());
-					if (s.getLastSelectedShip() != null)
-					{
-						System.out.println("in2");
-						Ship ship = s.getLastSelectedShip().getShip();
-						Game.getInstance().getPlayer().getBoard().addShip(this.cell.getX(), this.cell.getY(), ship);
-						ShipView.getLastSelectedShip().setCounter();//automatically increases value of
-						System.out.println(ShipView.getLastSelectedShip().getCounter());
-						//counter by 1
-						s.repaint();
-						
-						//repaint SelectShipView
-						// repaint Board
-						
-					}
-				}
-				else //when all ships have been added and it's attack time
-				{
-					/*
-					int x = cell.getX();
-					int y = cell.getY();
-					Game.getInstance().getPlayer().attack(x, y, Game.getInstance().getBot().getBoard());
-					//basically - a cell is clicked, it initiates a player attack on said cell
-					this.repaint(); //colours the cell based on the result of the attack
-					Game.getInstance().getBot().attack(Game.getInstance().getPlayer().getBoard());
-					this.repaint(); //hopefully colours the cell attacked by the robot, but I doubt it
-					*/
-				}
-				Game.getInstance().getPlayer().getBoard().printBoard();
+				Game.getInstance().getPlayer().getBoard().addShip(this.cell.getX(), this.cell.getY(), ship);
+				ShipView.getLastSelectedShip().setCounter();//automatically increases value of
+				//counter by 1
+				
+				Game.getInstance().gameView.repaint();
+			}
+					
+		}
+				
+		coloredCell();
+			
+		Game.getInstance().getPlayer().getBoard().printBoard(); // just for test
 	}
 
 	@Override
@@ -155,6 +160,4 @@ public class CellView extends JPanel implements MouseListener
 	
 	// to do:
 	//check is it player or is robot
-	//
-
 }

@@ -40,7 +40,6 @@ public class GameView extends JPanel
 		Graphics2D g = (Graphics2D) graphics;
 		super.paintComponent(g);
 		
-		
 	}
 	
 	public void repaint()
@@ -50,7 +49,6 @@ public class GameView extends JPanel
 			this.paint(this.getGraphics());
 		}
 	}
-	
 	
 
 }
