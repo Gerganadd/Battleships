@@ -46,7 +46,7 @@ public class Board
 			else
 			{
 				
-					playerBoard[x][y +i].setHasShip(true);
+					playerBoard[x][y + i].setHasShip(true);
 				
 			}
 			
