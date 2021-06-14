@@ -6,7 +6,7 @@ public abstract class BasePlayer
 {
 	private String name;
 	protected Board playerBoard;
-	private int points;
+	public int points;
 	
 	public BasePlayer(String name)
 	{
