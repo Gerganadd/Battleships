@@ -36,13 +36,14 @@ public class Board
 			if(ship.isHorizontal())
 			{
 				
-					playerBoard[x +i][y].setHasShip(true);;
+					
+					playerBoard[x][y+i].setHasShip(true);
 				
 			}
 			else
 			{
 				
-					playerBoard[x][y+i].setHasShip(true);;
+					playerBoard[x +i][y].setHasShip(true);
 				
 			}
 			
