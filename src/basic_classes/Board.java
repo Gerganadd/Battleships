@@ -37,13 +37,13 @@ public class Board
 			{
 				
 					
-					playerBoard[x][y+i].setHasShip(true);
+					playerBoard[x + i][y].setHasShip(true);
 				
 			}
 			else
 			{
 				
-					playerBoard[x +i][y].setHasShip(true);
+					playerBoard[x][y +i].setHasShip(true);
 				
 			}
 			

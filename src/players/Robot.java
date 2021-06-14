@@ -12,7 +12,7 @@ public class Robot extends BasePlayer
 	public Robot(String name)
 	{
 		super(name);
-		super.playerBoard = new Board();
+		//super.playerBoard = new Board();
 		
 	}
 	public Board makeBoard()
@@ -25,6 +25,8 @@ public class Robot extends BasePlayer
 					Ship temp = generateRandomShip(r);
 					int x = r.nextInt(10);
 					int y = r.nextInt(10);
+					if(x < 0 || x > 9 || y < 0 || y > 9)
+						continue;
 					if(super.playerBoard.getPlayerBoard()[x][y].hasShip() == true)
 						continue;
 					else
@@ -83,6 +85,7 @@ public class Robot extends BasePlayer
 							{
 								shipsAdded++;
 								super.playerBoard.addShip(x, y, temp);
+						
 								//super.playerBoard.getPlayerBoard()[x][y].setHasShip(true);
 							}
 						}
