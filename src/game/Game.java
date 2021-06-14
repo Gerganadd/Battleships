@@ -28,6 +28,8 @@ public class Game
 		
 		
 		play();
+		//play();
+
 	}
 	
 	public static Game getInstance()

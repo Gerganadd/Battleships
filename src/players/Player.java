@@ -22,6 +22,7 @@ public class Player extends BasePlayer
 		
 	}
 	
+	
 	public void attack(int x, int y, Board enemyBoard)
 	{
 		Cell temp = enemyBoard.getPlayerBoard()[x][y];

@@ -37,5 +37,7 @@ public abstract class BasePlayer
 	
 	public abstract void attack();
 	public abstract Board makeBoard();
+
+
 	
 }

@@ -5,18 +5,19 @@ public class Ship
 	private int length;
 	private boolean isSunk;
 	private boolean isHorizontal;
+	public boolean hasBeenSelected;
 	
 	public Ship(int length)
 	{
 		setLength(length);
 		this.isSunk = false;
 		this.isHorizontal = true;
+		this.hasBeenSelected = false;
 	}
 	
 	public Ship(int length, boolean isHorizontal)
 	{
-		setLength(length);
-		this.isSunk = false;
+		this(length);
 		this.isHorizontal = isHorizontal;
 	}
 	
