@@ -26,10 +26,7 @@ public class Game
 		this.bot = new Robot("bot");
 		this.isAllShipsAdded = false;
 		
-		
 		play();
-		//play();
-
 	}
 	
 	public static Game getInstance()
@@ -58,9 +55,10 @@ public class Game
 		this.isAllShipsAdded = value;
 	}
 	
-	
+	/*
 	public static void main(String[] args)
 	{
+		
 		JFrame f = new JFrame();
 		f.setBounds(10, 10, 900, 800);
 		f.setVisible(true);
@@ -75,11 +73,13 @@ public class Game
 		f.setLocationRelativeTo(null);
 		f.pack();
 		f.repaint();
+		
 	}
+	*/
 	
 	private void play()
 	{
-		/*
+		
 		while(player.getPoints() != MAX_POINTS && bot.getPoints() != MAX_POINTS)
 		{
 			//player turn
@@ -88,12 +88,13 @@ public class Game
 			int row = randomGenerateNumber();
 			int col = randomGenerateNumber();
 			
-			//player.attack(row, col, bot.getBoard());
-			//bot.attack(player.getBoard());
+			player.attack(row, col, bot.getBoard());
+			bot.attack(player.getBoard());
+			
 			System.out.println("player points : " + player.getPoints());
 			System.out.println("robot points : " + bot.getPoints());
 		}
-		*/
+		
 	}
 	
 	private static int randomGenerateNumber()

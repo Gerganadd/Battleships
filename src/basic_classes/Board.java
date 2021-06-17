@@ -9,6 +9,7 @@ public class Board
 	{
 		this.playerBoard = new Cell[SIZE][SIZE];
 		createBoard();
+		
 	}
 	
 	private void createBoard()
@@ -39,18 +40,20 @@ public class Board
 			if(ship.isHorizontal())
 			{
 				
-					
-					playerBoard[x + i][y].setHasShip(true);
+				playerBoard[x][y + i].setHasShip(true); // for horizontal!!!
+				//playerBoard[x + i][y].setHasShip(true);
 				
 			}
 			else
 			{
-				
-					playerBoard[x][y + i].setHasShip(true);
+				playerBoard[x + i][y].setHasShip(true);
+				//playerBoard[x][y + i].setHasShip(true);
 				
 			}
 			
 		}
+		System.out.println("add ship print");
+		printBoard();
 		
 	}
 	

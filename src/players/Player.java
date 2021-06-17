@@ -18,7 +18,8 @@ public class Player extends BasePlayer
 	public Player(String name)
 	{
 		super(name);
-		super.playerBoard = new Board();
+		//super.playerBoard = new Board(); 
+		super.playerBoard = makeBoard(); // for console version 
 		
 	}
 	
@@ -33,28 +34,7 @@ public class Player extends BasePlayer
 		else if(temp.hasShip() == true) //successful attack - points + 1, mark cell(s) as selected
 		{
 			this.setPoints(this.getPoints() + 1);
-			if(temp.getShip().getLength() > 1)
-			{
-				if(temp.getShip().isHorizontal())
-				{
-					for(int i = temp.getX(), j = 0; j < temp.getShip().getLength(); i++, j++)
-					{
-						enemyBoard.getPlayerBoard()[i][y].setIsSelected(true);
-					}
-				}
-				else
-				{
-					for(int i = temp.getY(), j = 0; j < temp.getShip().getLength(); i++, j++)
-					{
-						enemyBoard.getPlayerBoard()[x][i].setIsSelected(true);
-					}
-				}
-
-			}
-			else
-			{
-				enemyBoard.getPlayerBoard()[x][y].setIsSelected(true);
-			}
+			
 		}
 		else //unsuccessful attack - no ship in selected cell. Mark cell as selected
 		{
@@ -78,16 +58,17 @@ public class Player extends BasePlayer
 	@Override
 	public Board makeBoard() 
 	{
-		super.playerBoard = new Board();
-		return super.playerBoard;
-		/*File file = new File(".\\resources\\PlayerShipsPosition.txt"); 
+		//super.playerBoard = new Board();
+		//return super.playerBoard;
+		
+		File file = new File(".\\resources\\PlayerShipsPosition.txt"); 
 		Path filePath = file.toPath();
 		Board board = new Board();		
 		try 
 		{
 			List<String> lines = Files.readAllLines(filePath, StandardCharsets.UTF_8);
 			lines.remove(0);
-			lines.remove(6);
+	
 			for(String line : lines)
 			{
 				String[] args = line.split(" ");
@@ -96,41 +77,11 @@ public class Player extends BasePlayer
 				int y = Integer.parseInt(args[2]);
 				boolean isHorizontal = Integer.parseInt(args[3]) == 1 ? true : false;
 				Ship temp = new Ship(length, isHorizontal);
+				
 				board.addShip(x, y, temp);
-				board.getPlayerBoard()[x][y].setHasShip(true);
-				// was supposed to add the ships along the grid but isn't working
-				if(isHorizontal == true)
-				{
-					for(int i = x, j = 0; j < length; i++, j++)
-					{
-						board.addShip(i, y, temp);
-						board.getPlayerBoard()[i][y].setHasShip(true);
-					}
-				}
-				else
-				{
-					for(int i = y, j = 0; j < length; i++, j++)
-					{
-						board.addShip(x, i, temp);
-						board.getPlayerBoard()[x][i].setHasShip(true);
-					}
-				}
-				if(isHorizontal)
-				{
-					if(Board.SIZE - x > length)
-					{
-						board.addShip(x, y, temp);
-					}
-				}
-				else
-				{
-					if(Board.SIZE - y > length)
-					{
-						board.addShip(x, y, temp);
-					}
-				}
 				
 			}
+			
 		} 
 		catch (IOException e) 
 		{
@@ -139,7 +90,7 @@ public class Player extends BasePlayer
 		}
 		
 		return board;
-		*/
+		
 	}
 	
 }
